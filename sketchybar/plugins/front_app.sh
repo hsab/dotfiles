@@ -69,8 +69,11 @@ case $INFO in
     ;;
 esac
 
-# sketchybar --set $NAME icon=$ICON icon.padding_right=$ICON_PADDING_RIGHT
+sketchybar --set $NAME icon=$ICON icon.padding_right=$ICON_PADDING_RIGHT
 sketchybar --set $NAME label="$INFO"
+
+icon_strip=" "
+icon_strip+=" $($CONFIG_DIR/plugins/icon_map_fn.sh "$INFO")"
 
 if [ "$SENDER" = "front_app_switched" ]; then
   sketchybar --set "$NAME" label="$INFO"

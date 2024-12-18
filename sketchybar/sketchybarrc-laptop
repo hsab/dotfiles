@@ -12,9 +12,9 @@ sketchybar --bar \
     margin=0 \
     sticky=on \
     padding_left=16 \
-    padding_right=4 \
+    padding_right=8 \
     notch_width=228 \
-    display=main
+    blur_radius=10 
 
 # Alternatiive background colors
 # label.color=0xffffffff
@@ -110,6 +110,8 @@ sketchybar --add item front_app left \
     background.padding_left=0 \
     background.padding_right=0 \
     icon.drawing=off \
+    icon.padding_left=0 \
+    icon.padding_right=0 \
     label.padding_left=0 \
     label.padding_right=0 \
     script="$PLUGIN_SHARED_DIR/front_app.sh" \
@@ -139,7 +141,7 @@ sketchybar --add bracket front_app_bracket \
 sketchybar --add item clock right \
     --set clock \
     icon=󰃰 \
-    update_freq=1 \
+    update_freq=60 \
     script="$PLUGIN_SHARED_DIR/clock.sh"
 
 sketchybar --add item battery right \
@@ -153,11 +155,16 @@ sketchybar --add item volume right \
     script="$PLUGIN_SHARED_DIR/volume.sh" \
     --subscribe volume volume_change
 
+sketchybar --add item wifi right \
+           --set wifi script="$PLUGIN_SHARED_DIR/wifi.sh" \
+                         update_freq=60
+
 # osascript -e 'quit app "Rectangle"'
 # open -a Rectangle
 
 
 
 ##### Finalizing Setup #####
+sketchybar --hotload on
 sketchybar --update
 sketchybar --trigger space_change
