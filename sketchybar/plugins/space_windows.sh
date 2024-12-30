@@ -21,19 +21,16 @@ if [ "$SENDER" = "aerospace_workspace_change" ] || [ "$SENDER" = "space_windows_
   # create the icon strip
   icon_strip=" "
   if [ "${apps}" != "" ]; then
-    while read -r app
-    do
+    while read -r app; do
       icon_strip+=" $($CONFIG_DIR/plugins/icon_map_fn.sh "$app")"
-    done <<< "${apps}"
+    done <<<"${apps}"
   else
     icon_strip=""
   fi
 
-
   if [ "$icon_strip" != "" ]; then
-    sketchybar --set space.$focused_workspace label="$icon_strip" label.drawing=on
-    sketchybar --set space.$focused_workspace icon.padding_right=0
+    sketchybar --set space.$focused_workspace label="$icon_strip" label.drawing=on icon.padding_right=0
   else
-    sketchybar --set space.$focused_workspace label.drawing=off icon.padding_right=12 
+    sketchybar --set space.$focused_workspace label.drawing=off icon.padding_right=12
   fi
 fi
