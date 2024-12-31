@@ -35,16 +35,33 @@ sketchybar --default \
 
 # Add the aerospace_workspace_change event we specified in aerospace.toml
 sketchybar --add event aerospace_workspace_change
+sketchybar --add event aerospace_mode_change
+# sketchybar --add event spotify_change $SPOTIFY_EVENT
 
-sketchybar --add event spotify_change $SPOTIFY_EVENT \
-  --add item spotify e \
-  --set spotify \
-  icon= \
-  icon.y_offset=1 \
-  label.drawing=off \
-  label.padding_left=3 \
-  script="$PLUGIN_DIR/spotify.sh" \
-  --subscribe spotify spotify_change mouse.clicked
+sketchybar --add item aerospace_mode e \
+  --subscribe aerospace_mode aerospace_mode_change \
+  --set aerospace_mode \
+  drawing=off \
+  background.drawing=on \
+  background.border_color=0xAAFFFFFF \
+  background.border_width=1 \
+  icon.drawing=off \
+  icon.padding_left=0 \
+  icon.padding_right=0 \
+  label="M" \
+  label.padding_left=8 \
+  label.padding_right=9 \
+  script="$PLUGIN_SHARED_DIR/aerospace.sh" \
+  label.drawing=yes
+
+# sketchybar --add item spotify e \
+#   --set spotify \
+#   icon= \
+#   icon.y_offset=1 \
+#   label.drawing=off \
+#   label.padding_left=3 \
+#   script="$PLUGIN_DIR/spotify.sh" \
+#   --subscribe spotify spotify_change mouse.clicked
 
 # This only works for single monitor configs!
 for sid in $(aerospace list-workspaces --all); do
