@@ -6,3 +6,4 @@ window-colorspace="display-p3"
 quit-after-last-window-closed=true
 window-inherit-working-directory=true
 window-save-state=never
+macos-titlebar-style = tabs

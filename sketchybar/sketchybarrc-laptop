@@ -43,14 +43,9 @@ sketchybar --add item aerospace_mode e \
   --set aerospace_mode \
   drawing=off \
   background.drawing=on \
-  background.border_color=0xAAFFFFFF \
-  background.border_width=1 \
+  background.color=0xFFdc2626 \
   icon.drawing=off \
-  icon.padding_left=0 \
-  icon.padding_right=0 \
   label="M" \
-  label.padding_left=8 \
-  label.padding_right=9 \
   script="$PLUGIN_SHARED_DIR/aerospace.sh" \
   label.drawing=yes
 

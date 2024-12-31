@@ -13,8 +13,10 @@ fi
 
 if [ "$SENDER" = "aerospace_mode_change" ]; then
   if [ "$MODE" = "MAIN" ]; then
-    sketchybar --set "$NAME" label="M" drawing=off
+    sketchybar --set "$NAME" drawing=off
+    sketchybar --bar color=0x00000000
   else
-    sketchybar --set "$NAME" label="$MODE" background.color=0xFFdc2626 background.border_color=0xFFdc2626 drawing=on
+    sketchybar --set "$NAME" label="$MODE" drawing=on
+    sketchybar --bar color=0xFFdc2626
   fi
 fi
