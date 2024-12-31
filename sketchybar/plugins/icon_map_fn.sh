@@ -280,6 +280,9 @@ function icon_map() {
   "iTerm" | "iTerm2")
     icon_result=":iterm:"
     ;;
+  "Ghostty")
+    icon_result=":iterm:"
+    ;;
   "Jellyfin Media Player")
     icon_result=":jellyfin:"
     ;;

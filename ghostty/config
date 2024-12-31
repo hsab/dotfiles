@@ -1,0 +1,8 @@
+font-family = "MesloLGS NF"
+theme="Elementary"
+font-thicken="true"
+bold-is-bright="true"
+window-colorspace="display-p3"
+quit-after-last-window-closed=true
+window-inherit-working-directory=true
+window-save-state=never

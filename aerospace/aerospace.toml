@@ -105,9 +105,11 @@ alt-semicolon = [
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
 alt-enter = '''exec-and-forget osascript -e '
-tell application "iTerm2"
-    set newWindow to (create window with default profile)
-end tell'
+if application "Ghostty" is running then
+    tell application "System Events" to click menu item "New Window" of menu "File" of menu bar 1 of process "Ghostty"
+else
+    tell application "Ghostty" to activate
+end if'
 '''
 
 alt-f = '''exec-and-forget osascript -e '
@@ -117,6 +119,31 @@ tell application "Finder"
     open "~"
 end tell'
 '''
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus
+alt-h = 'focus left --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+alt-j = 'focus down --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+alt-k = 'focus up --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+alt-l = 'focus right --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+alt-m = "focus-monitor --wrap-around next"
+alt-w = '''exec-and-forget aerospace list-workspaces --monitor all --empty no | aerospace workspace --wrap-around next'''
 
 [mode.aero.binding]
 alt-semicolon = [
@@ -129,8 +156,13 @@ esc = [
     'exec-and-forget sketchybar --trigger aerospace_mode_change MODE="MAIN"',
 ]
 
+alt-shift-h = 'join-with left'
+alt-shift-j = 'join-with down'
+alt-shift-k = 'join-with up'
+alt-shift-l = 'join-with right'
 
 shift-r = 'exec-and-forget displayplacer "id:1 res:1800x1169 hz:120 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0" "id:2 res:2560x1440 hz:60 color_depth:8 enabled:true scaling:off origin:(1800,-133) degree:0" "id:3 res:2560x1440 hz:60 color_depth:8 enabled:true scaling:off origin:(4360,-128) degree:0"'
+
 cmd-shift-r = 'exec-and-forget displayplacer "id:1 res:1800x1169 hz:120 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0" "id:3 res:2560x1440 hz:60 color_depth:8 enabled:true scaling:off origin:(1800,-133) degree:0" "id:2 res:2560x1440 hz:60 color_depth:8 enabled:true scaling:off origin:(4360,-128) degree:0"'
 
 
@@ -139,40 +171,11 @@ slash = 'layout tiles horizontal vertical'
 comma = 'layout accordion horizontal vertical'
 period = 'layout floating tiling'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#focus
-h = 'focus left --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-j = 'focus down --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-k = 'focus up --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-l = 'focus right --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#move
-shift-h = 'move left'
-shift-j = 'move down'
-shift-k = 'move up'
-shift-l = 'move right'
-
-alt-shift-h = 'join-with left'
-alt-shift-j = 'join-with down'
-alt-shift-k = 'join-with up'
-alt-shift-l = 'join-with right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 minus = 'resize smart -50'
 equal = 'resize smart +50'
 f = 'fullscreen'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-1 = 'workspace 1'
-2 = 'workspace 2'
-3 = 'workspace 3'
-4 = 'workspace 4'
-5 = 'workspace 5'
-6 = 'workspace 6'
-7 = 'workspace 7'
-8 = 'workspace 8'
-9 = 'workspace 9'
-m = "focus-monitor --wrap-around next"
-w = '''exec-and-forget aerospace list-workspaces --monitor all --empty no | aerospace workspace --wrap-around next'''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-1 = ['move-node-to-workspace 1', 'workspace 1']
@@ -264,6 +267,10 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.ActivityMonitor'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
 run = 'layout floating'
 
 [[on-window-detected]]
